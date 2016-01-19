@@ -59,6 +59,13 @@ class CanvasDrawContext extends DrawContext {
       canvas.context2D.fill();
     }
   }
+
+  void drawArc(Arc arc, {bool fill : false}) {
+    canvas.context2D.arc(arc.center.x, arc.center.y, arc.radius, arc.startAngle, arc.stopAngle-arc.startAngle);
+    if(fill) {
+      canvas.context2D.fill();
+    }
+  }
   
   void drawPolygon(Polygon polygon, {bool fill : false}) {
     var c2d = canvas.context2D;
@@ -66,6 +73,7 @@ class CanvasDrawContext extends DrawContext {
     for(int i = 1;i < polygon.points.length;i++) {
       c2d.lineTo(polygon.points[i].x, polygon.points[i].y);
     }
+
     c2d.lineTo(polygon.points[0].x, polygon.points[0].y);
     c2d.stroke();
     if(fill) {
@@ -191,6 +199,28 @@ class Circle extends Shape2D {
   
   Shape2D translate(num x, num y) {
     return new Circle(center.translate(x, y), radius);    
+  }
+}
+
+
+class Arc extends Shape2D {
+  Point2D center;
+  num radius;
+  num startAngle;
+  num stopAngle;
+
+  Arc(this.center, this.radius, this.startAngle, this.stopAngle) {}
+
+  void draw(DrawContext context, {fill : false}) {
+    context.drawCircle(this, fill: fill);
+  }
+
+  Shape2D stretch(num percent) {
+    return new Circle(center, radius*percent);
+  }
+
+  Shape2D translate(num x, num y) {
+    return new Circle(center.translate(x, y), radius);
   }
 }
 
