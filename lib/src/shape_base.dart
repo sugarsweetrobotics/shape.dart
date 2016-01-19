@@ -11,7 +11,7 @@ class DrawContext {
   
   void set fillColor(Color c) {}
   
-  void set storokeColor(Color c) {}
+  void set strokeColor(Color c) {}
   
   void drawRect(Rectangle rectangle, {bool fill : false}) {
   }
@@ -43,8 +43,8 @@ class CanvasDrawContext extends DrawContext {
     canvas.context2D.fillStyle = c.toString();
   }
   
-  void set storokeColor(Color c) {
-    canvas.context2D.strokeStyle = '${c.toString()} ${font}';
+  void set strokeColor(Color c) {
+    canvas.context2D.strokeStyle = '${c.toString()}';
   }
   
   CanvasDrawContext(this.canvas) {}
@@ -125,7 +125,7 @@ class Color {
   Color(this.r, this.g, this.b, [this.a]) {}
   
   String toString() {
-    return "rgb(${r},${g},${b}";
+    return "rgb(${r},${g},${b})";
   }
   
   Color.black() {
