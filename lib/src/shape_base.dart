@@ -18,6 +18,9 @@ class DrawContext {
   
   void drawCircle(Circle circle, {bool fill : false}) {
   }
+
+  void drawArc(Arc arc, {bool fill : false}) {
+  }
   
   void drawPolygon(Polygon polygon, {bool fill : false}) {
   }
@@ -212,15 +215,15 @@ class Arc extends Shape2D {
   Arc(this.center, this.radius, this.startAngle, this.stopAngle) {}
 
   void draw(DrawContext context, {fill : false}) {
-    context.drawCircle(this, fill: fill);
+    context.drawArc(this, fill: fill);
   }
 
   Shape2D stretch(num percent) {
-    return new Circle(center, radius*percent);
+    return new Arc(center, radius*percent, this.startAngle, this.stopAngle);
   }
 
   Shape2D translate(num x, num y) {
-    return new Circle(center.translate(x, y), radius);
+    return new Arc(center.translate(x, y), radius, this.startAngle, this.stopAngle);
   }
 }
 
