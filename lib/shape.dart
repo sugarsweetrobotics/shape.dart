@@ -6,6 +6,14 @@
 /// This is an awesome library. More dartdocs go here.
 library shape;
 
+
+import 'dart:core';
+import 'dart:html' as html;
+import 'dart:math' as math;
+
+
 // TODO: Export any libraries intended for clients of this package.
 
-export 'src/shape_base.dart';
+part 'src/draw_context.dart';
+part 'src/basic_shapes.dart';
+part 'src/canvas_draw_context.dart';
